@@ -1,46 +1,51 @@
-# Advanced Sample Hardhat Project
+# Amadeus Sample Contract Project
 
-This project demonstrates an advanced Hardhat use case, integrating other tools commonly used alongside Hardhat in the ecosystem.
+Full Contract Exported from [Amadeus Platfrom](https://www.amadeus-nft.io/).
+Contains ERC721A, AmadeusSample.
+For AmadeusSample, contains allowListMint, publicSaleMint, auctionMint modules.
 
-The project comes with a sample contract, a test for that contract, a sample script that deploys that contract, and an example of a task implementation, which simply lists the available accounts. It also comes with a variety of other tools, preconfigured to work with the project code.
-
-Try running some of the following tasks:
-
-```shell
-npx hardhat accounts
-npx hardhat compile
-npx hardhat clean
-npx hardhat test 
-npx hardhat node
-npx hardhat help
-REPORT_GAS=true npx hardhat test
-npx hardhat coverage
-npx hardhat run scripts/deploy-old.ts
-TS_NODE_FILES=true npx ts-node scripts/deploy-old.ts
-npx eslint '**/*.{js,ts}'
-npx eslint '**/*.{js,ts}' --fix
-npx prettier '**/*.{json,sol,md}' --check
-npx prettier '**/*.{json,sol,md}' --write
-npx solhint 'contracts/**/*.sol'
-npx solhint 'contracts/**/*.sol' --fix
-```
-
-# Etherscan verification
-
-To try out Etherscan verification, you first need to deploy a contract to an Ethereum network that's supported by Etherscan, such as Ropsten.
-
-In this project, copy the .env.example file to a file named .env, and then edit it to fill in the details. Enter your Etherscan API key, your Ropsten node URL (eg from Alchemy), and the private key of the account which will send the deployment transaction. With a valid .env file in place, first deploy your contract:
+You can run bash command below to test Contract.
 
 ```shell
-hardhat run --network ropsten scripts/sample-script.ts
+npx hardhat test test/index.test.ts
 ```
 
-Then, copy the deployment address and paste it in to replace `DEPLOYED_CONTRACT_ADDRESS` in this command:
+# Test Result
 
-```shell
-npx hardhat verify --network ropsten DEPLOYED_CONTRACT_ADDRESS "Hello, Hardhat!"
 ```
+Primary Account: 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266
+Test Mint Account: 0x70997970C51812dc3A010C7d01b50e0d17dc79C8
+Azuki : 0x5FbDB2315678afecb367f032d93F642f64180aa3
+    AllowList
+      ✔ Not Start
+      ✔ set start and not set allowed (45ms)
+      ✔ set allowlist, mint greater than maxbatchsize (38ms)
+      ✔ Should allow mint (43ms)
+      ✔ Should allow mint, reach max
+      ✔ Should allow mint, mint 1 to test account (42ms)
+      ✔ Should not allow mint, allowList mint reached max
+    PublicSale
+      ✔ Not Start
+      ✔ set started, mint greater than maxbatchsize
+      ✔ Should allow mint, money not enouth
+      ✔ Should allow mint, 
+      ✔ Should allow mint, reach max
+      ✔ Should allow mint, mint 1 to test account
+      ✔ Should not allow mint, public sale mint reached max
+    Auction
+      ✔ Not Start
+      ✔ set started, mint greater than maxbatchsize
+      ✔ Should allow mint, money not enouth
+      ✔ Should allow mint, 
+      ✔ Should allow mint, reach max
+      ✔ Should allow mint, mint 1 to test account
+      ✔ Should not allow mint, auction mint reached max
+    Researve
+      ✔ researve mint
+    WithDraw
+      ✔ with draw
 
-# Performance optimizations
 
-For faster runs of your tests and scripts, consider skipping ts-node's type checking by setting the environment variable `TS_NODE_TRANSPILE_ONLY` to `1` in hardhat's environment. For more details see [the documentation](https://hardhat.org/guides/typescript.html#performance-optimizations).
+  23 passing (2s)
+
+```
